@@ -40,7 +40,7 @@ def get_keywords_eng(text):
             continue
         if(token.pos_ in pos_tag):
             result.append(token.text)
-    print(result)
+    #print(result)
     return result
 
 for content in df.content.values:
@@ -49,6 +49,11 @@ for content in df.content.values:
 df['keyword'] = results
 
 text = str(results)
+
+f = open("content.txt","x")
+with open('content.txt', 'w') as f:
+    for item in results:
+        f.write("%s\n" % item)
 
 wordcloud = WordCloud(max_font_size=50, max_words=100, background_color="white").generate(text)
 plt.figure()
